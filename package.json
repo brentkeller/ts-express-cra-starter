@@ -5,12 +5,11 @@
     "server"
   ],
   "scripts": {
-    "build": "run-s build:server build:client clean:build copy:server copy:client",
+    "build": "npm-run-all clean:build --parallel build:server build:client --sequential copy:client",
     "build:client": "yarn workspace client build",
     "build:server": "yarn workspace server build",
     "clean:build": "rimraf build",
     "copy:client": "copyfiles -u 2 client/build/**/* build/client",
-    "copy:server": "copyfiles -u 2 server/dist/**/* build",
     "dev": "run-p dev:client dev:server",
     "dev:client": "yarn workspace client start",
     "dev:server": "yarn workspace server dev",
