@@ -13,7 +13,9 @@
     "dev": "run-p dev:client dev:server",
     "dev:client": "yarn workspace client start",
     "dev:server": "yarn workspace server dev",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "test:client": "yarn workspace client test",
+    "test:server": "yarn workspace server test"
   },
   "devDependencies": {
     "copyfiles": "^2.2.0",
