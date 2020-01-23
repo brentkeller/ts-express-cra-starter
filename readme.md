@@ -36,3 +36,28 @@ You'll need a heroku account and the [heroku CLI](https://devcenter.heroku.com/c
    This should create the new app on your heroku account and add a new `heroku` git remote. You can verify with `git remote -v`
 2. Run `git push heroku master` to deploy your combined app  
    Heroku will detect the node.js environment and will by default run `build` and then `start` so you're ready to go.
+
+## About the apps
+
+### Client
+
+The client is mostly the default `create-react-app`
+
+1. `yarn create react-app client --template Typescript`
+2. Added `"proxy": "http://localhost:5000"` to `package.json`  
+   This allows the client to reach the server via `/` in development mode
+3. Updated `App.tsx` to include code to load the `/movies` API data
+
+### Server
+
+This is pretty much the exact output of [this tutorial](https://amenallah.com/node-js-typescript-jest-express-starter/) by Amenallah Hsoumi
+which I found via this [StackOverflow question](https://stackoverflow.com/questions/59587296/how-to-deploy-a-typescript-nodejs-and-express-app-to-heroku). The only changes I made are:
+
+1. Set `"outDir": "../build",` in `tsconfig.json`  
+   This writes the server files directly to our desired build directory instead of having to copy them there later
+2. Added a default "record" in the `MovieApi.ts` file  
+   This just gives the client app something to show by default
+
+## Other stuff
+
+[This post](https://medium.com/codeduck/a-real-world-project-typescript-express-and-react-4701c0458e9c) by Dirk Hoekstra served as validation for my idea. The end result is similar but I wanted to use yarn workspaces.
